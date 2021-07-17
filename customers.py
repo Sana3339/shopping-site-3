@@ -35,7 +35,11 @@ def read_customer_types_from_file(filepath):
 def get_by_email(email):
     """Given an email, returns the customer object."""
 
-    return customer_dictionary[email]
+    if customer_dictionary.get(email):
+        return customer_dictionary[email]
+
+    else:
+        return None
 
 
 

@@ -1,5 +1,6 @@
 <html>
 <head>
+    <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet"
           href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.css"/>
     <link rel="stylesheet" href="/static/css/site.css"/>
@@ -24,7 +25,12 @@
                         My Melon Cart
                     </a>
                 </li>
-                <li><a href="/login">Log In</a></li>
+                {% if session.get('email') %}
+                    <li><a href="/logout">Log out</a></li>
+
+                {% else %}
+                    <li><a href="/login">Log In</a></li>
+                {% endif %}
             </ul>
         </div>
 
@@ -32,6 +38,8 @@
 </div>
 
 <div class="container">
+
+
 
   <!-- Show flashed messages -->
   {% with messages = get_flashed_messages() %}
@@ -41,6 +49,8 @@
   {% endwith %}
 
   <!-- This is where the main content goes. -->
+
+
   {% block body %}
       BODY OF PAGE GOES HERE VIA INHERITANCE
   {% endblock %}
