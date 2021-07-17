@@ -10,11 +10,19 @@ class Customer(object):
         self.last_name = last_name
         self.email = email
         self.password = password
+        self.hashed_password = hash(password)
 
     def __repr__(self):
         """Convenience method to show information about customer in console."""
 
         return f'<Name = {self.first_name} {self.last_name}, email = {self.email}>'
+
+    def is_correct_password(self, password):
+        """Check if password is correct password for this customer.
+
+        Compare the hash of password to the stored hash of original password."""
+
+        return hash(password) == self.hashed_password
 
 def read_customer_types_from_file(filepath):
     """Read and format customer information from text file and populate dictionary of customers.
@@ -40,6 +48,8 @@ def get_by_email(email):
 
     else:
         return None
+
+
 
 
 

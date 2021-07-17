@@ -147,7 +147,7 @@ def process_login():
         #   against the stored one
         # - if they match, store the user's email in the session, flash a success
         #   message and redirect the user to the "/melons" route
-        if password == customer.password:
+        if customer.is_correct_password(password):
             session['email'] = email
             flash('Success! You are logged in.')
 
